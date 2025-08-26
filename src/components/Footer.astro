@@ -1,0 +1,181 @@
+---
+// Información del partido - centralizada para fácil edición
+const partyInfo = {
+  name: "Partido Democrático",
+  slogan: "Tu voz, nuestro compromiso",
+  email: "contacto@partidodemocratico.org",
+  phone: "+1 (555) 123-4567",
+  address: "Calle Principal 123, Ciudad, Estado 12345"
+};
+
+// Redes sociales - preparadas para cuando tengas las URLs reales
+const socialLinks = [
+  { name: 'Facebook', href: '#', icon: 'facebook', label: 'Síguenos en Facebook' },
+  { name: 'Twitter', href: '#', icon: 'twitter', label: 'Síguenos en Twitter' },
+  { name: 'Instagram', href: '#', icon: 'instagram', label: 'Síguenos en Instagram' },
+  { name: 'YouTube', href: '#', icon: 'youtube', label: 'Visita nuestro canal de YouTube' }
+];
+
+// Enlaces legales - preparados para futuras páginas
+const legalLinks = [
+  { name: 'Aviso de Privacidad', href: '#' },
+  { name: 'Términos de Uso', href: '#' },
+  { name: 'Contacto', href: '#' }
+];
+
+// Año actual dinámico
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-neutral-800 text-white mt-auto">
+  <!-- Contenido principal del footer -->
+  <div class="container mx-auto py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      
+      <!-- Información del Partido -->
+      <div class="lg:col-span-2">
+        <div class="flex items-center space-x-2 mb-4">
+          <!-- Logo placeholder (mismo que en header) -->
+          <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm" aria-label="Logo del partido">
+              PD
+            </span>
+          </div>
+          <h2 class="text-xl font-bold text-white">
+            {partyInfo.name}
+          </h2>
+        </div>
+        
+        <p class="text-neutral-300 mb-4 max-w-md">
+          {partyInfo.slogan}. Trabajando juntos por un futuro mejor para todos los ciudadanos.
+        </p>
+        
+        <!-- Newsletter Signup - placeholder para futuro -->
+        <div class="max-w-md">
+          <h3 class="text-sm font-semibold text-white mb-2">
+            Mantente informado
+          </h3>
+          <p class="text-sm text-neutral-400 mb-3">
+            Recibe actualizaciones sobre nuestras propuestas y eventos.
+          </p>
+          <button 
+            class="btn-base btn-primary text-sm w-full sm:w-auto"
+            onclick="alert('Funcionalidad de newsletter próximamente')"
+          >
+            Suscríbete al Newsletter
+          </button>
+        </div>
+      </div>
+
+      <!-- Información de Contacto -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-4">
+          Contacto
+        </h3>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start space-x-2">
+            <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+            </svg>
+            <a 
+              href={`mailto:${partyInfo.email}`}
+              class="text-neutral-300 hover:text-primary transition-colors duration-200"
+            >
+              {partyInfo.email}
+            </a>
+          </li>
+          
+          <li class="flex items-start space-x-2">
+            <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            <a 
+              href={`tel:${partyInfo.phone}`}
+              class="text-neutral-300 hover:text-primary transition-colors duration-200"
+            >
+              {partyInfo.phone}
+            </a>
+          </li>
+          
+          <li class="flex items-start space-x-2">
+            <svg class="w-4 h-4 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-neutral-300">
+              {partyInfo.address}
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Redes Sociales -->
+      <div>
+        <h3 class="text-lg font-semibold text-white mb-4">
+          Síguenos
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          {socialLinks.map((social) => (
+            <a
+              href={social.href}
+              class="w-10 h-10 bg-neutral-700 hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-200 group"
+              aria-label={social.label}
+              title={social.label}
+            >
+              <!-- Iconos simplificados - puedes reemplazar con librerías como Lucide o Heroicons -->
+              {social.icon === 'facebook' && (
+                <svg class="w-5 h-5 text-neutral-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              )}
+              {social.icon === 'twitter' && (
+                <svg class="w-5 h-5 text-neutral-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                </svg>
+              )}
+              {social.icon === 'instagram' && (
+                <svg class="w-5 h-5 text-neutral-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.148-1.297C4.613 14.81 4.613 13.659 4.613 12.017s0-2.793.688-3.674c.7-.807 1.851-1.297 3.148-1.297 1.297 0 2.448.49 3.148 1.297.688.881.688 2.031.688 3.674s0 2.793-.688 3.674c-.7.807-1.851 1.297-3.148 1.297z"/>
+                </svg>
+              )}
+              {social.icon === 'youtube' && (
+                <svg class="w-5 h-5 text-neutral-300 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="border-t border-neutral-700">
+    <div class="container mx-auto py-4">
+      <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+        <!-- Copyright -->
+        <div class="text-sm text-neutral-400">
+          <p>© {currentYear} {partyInfo.name}. Todos los derechos reservados.</p>
+        </div>
+        
+        <!-- Enlaces Legales -->
+        <nav class="flex flex-wrap justify-center sm:justify-end gap-4 text-sm" aria-label="Enlaces legales">
+          {legalLinks.map((link, index) => (
+            <>
+              <a
+                href={link.href}
+                class="text-neutral-400 hover:text-primary transition-colors duration-200"
+              >
+                {link.name}
+              </a>
+              {index < legalLinks.length - 1 && (
+                <span class="text-neutral-600" aria-hidden="true">|</span>
+              )}
+            </>
+          ))}
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>

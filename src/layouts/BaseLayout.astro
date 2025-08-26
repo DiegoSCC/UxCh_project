@@ -1,0 +1,95 @@
+---
+import '../styles/global.css';
+
+// Props del componente
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title = "Partido Político - Tu Voz, Nuestro Compromiso",
+  description = "Representando los valores y principios que nos unen como sociedad. Únete al cambio que nuestro país necesita.",
+  image = "/og-image.jpg",
+  canonical = Astro.url.pathname
+} = Astro.props;
+
+// Generar URL absoluta para meta tags
+const canonicalURL = new URL(canonical, Astro.site);
+const socialImage = new URL(image, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Meta básicos -->
+  <meta charset="UTF-8" />
+  <meta name="description" content={description} />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href={canonicalURL} />
+  
+  <!-- Título -->
+  <title>{title}</title>
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={socialImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_ES" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={canonicalURL} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={socialImage} />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  
+  <!-- Preconnect para optimización de carga -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Google Fonts - Inter -->
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" 
+    rel="stylesheet"
+  />
+  
+  <!-- Preparado para futuras integraciones -->
+  <!-- Analytics se añadirá aquí -->
+  <!-- Schema.org se añadirá aquí -->
+</head>
+
+<body>
+  <!-- Skip to main content para accesibilidad -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-white px-4 py-2 rounded-md z-50">
+    Saltar al contenido principal
+  </a>
+  
+  <!-- Header global -->
+  <slot name="header" />
+  
+  <!-- Contenido principal -->
+  <main id="main-content">
+    <slot />
+  </main>
+  
+  <!-- Footer global -->
+  <slot name="footer" />
+  
+  <!-- Scripts al final para mejor rendimiento -->
+  <script>
+    // Preparado para scripts globales
+    console.log('🏛️ Sitio web del partido político cargado correctamente');
+  </script>
+</body>
+</html>
